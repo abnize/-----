@@ -1,0 +1,120 @@
+-- SELECT * FROM sakila.store;
+-- /* customer 테이블에서 이메일 주소에서 @를 (at)으로 바꾸어 출력하시오. */
+-- select replace(email, '@', '(at)')AS smail_modified FROM customer; 
+-- /* film 테이블에서 title에 있는 'THE'를 '***'로 바꾸어 출력하시오. */
+-- SELECT REPLACE(title, 'THE', '***')AS title_modified FROM film;
+-- /* customer 테이블에서 이메일에 '@'가 몇 번째 위치에 있는지 출력하시오. */
+-- SELECT email, locate('@', email) AS email_modified FROM customer;
+-- /* film 테이블에서 제목의 4~8번째 글자를 출력하시오. */
+-- select substring(title, 4, 8) AS title_part FROM film;
+-- /* payment 테이블에서 결제 금액을 소수점 첫째 자리로 반올림하여 출력하시오. */
+-- SELECT round(amount, 1)AS rounded_amount FROM payment;
+-- /* 랜덤으로 영화 5개를 출력하시오. */
+-- select * from film order by rand() limit 5;
+-- /* rental_date, return_date 중 더 늦은 날짜를 출력하시오. */
+-- select rental_id, rental_date, return_date, greatest(rental_date, return_date)
+-- AS later_date FROM rental; 
+-- /* customer 테이블에서 활성화되지 않은 고객만 출력하시오. -> active가 0인거 찾기 */
+-- select * from customer where active = 0;
+-- /* 고객 ID를 5자리 숫자로 왼쪽 0으로 채워서 출력하시오. */
+-- select lpad(customer_id, 6, 0) AS padded_id FROM customer;
+-- /* customer 테이블에서 고객이 속한 store_id별로 고객 수를 구하시오. */
+-- select store_id, count(*) AS customer_count FROM customer group by store_id;
+-- /* payment 테이블에서 가장 결제를 많이 한 고객 ID 상위 5명을 구하시오. */ 
+-- select customer_id, count(*) AS payment_count FROM payment
+-- group by customer_id order by payment_count DESC limit 5;
+-- /* rental 테이블에서 고객별 대여 횟수를 구하고, 30회 이상 대여한 고객만 출력하시오. */
+-- select customer_id, count(*) AS rental_count FROM rental
+-- group by customer_id order by rental_count <= 30;
+-- /* film 테이블에서 길이(length)가 100분 이상인 영화들의 등급별 평균 길이를 구하시오. */
+-- select rating, avg(length) AS avg_length FROM film
+-- where length >= 100 GROUP BY rating;
+-- /* payment 테이블에서 고객별 평균 결제 금액이 5 이상인 경우만 출력하시오. */
+-- select customer_id, avg(amount) AS avg_payment FROM payment
+-- group by customer_id having avg_payment >= 5;
+
+-- select a.first_name, a.last_name, title FROM film_actor fa JOIN actor a ON fa.actor_id = a.actor_id
+-- JOIN film f ON fa.film_id = f.film_id;
+
+/* rental 테이블과 customer 테이블을 조인하여 고객 이름과 대여일을 출력하시오 */
+-- select concat(c.first_name,' ',c.last_name) AS customer_name,
+-- r.rental_date FROM rental r JOIN customer c ON r.customer_id = c.customer_id;
+-- /* film_category. film, category 테이블을 조인해 영화 제목과 장르를 출력 */
+-- select f.title, c.name AS category FROM film_category fc
+-- JOIN film f ON fc.film_id = f.film_id
+-- JOIN category c ON fc.category_id = c.category_id; 
+-- /* rental, inventory, film 테이블을 조인하여 대여된 영화 제목과 대여일을 출력하시오 */
+-- select f.title, r.rental_date FROM rental r
+-- JOIN inventory i ON r.inventory_id = i.inventory_id
+-- JOIN film f ON i.film_id = f.film_id; 
+-- /* film 테이블에서 출연 배우가 5명 이상인 영화 제목을 출력하시오 */
+-- select f.title from film f
+-- join film_actor fa ON f.film_id = fa.film_id
+-- group by f.film_id, f.title HAVING COUNT(fa.actor_id) >= 5;
+-- /* rental 테이블에서 영화 제목과 반납되지 않은 대여 건만 조회하시오 */
+-- select f.title, r.rental_date FROM rental r JOIN inventory i on
+-- r.inventory_id = i.inventory_id JOIN film f ON i.film_id = f.film_id
+-- WHERE r.return_date IS NULL;
+
+-- /* 평균 rental_rate보다 높은 영화의 제목과 요금을 출력하시오. */
+-- select title, rental_rate FROM film 
+-- WHERE rental_rate > (select avg(rental_rate) FROM film);
+-- /* 총 결제 금액이 가장 많은 고객의 ID와 이름을 출력하시오. */
+-- SELECT customer_id, first_name, last_name FROM customer
+-- WHERE customer_id = (
+--   SELECT customer_id FROM payment
+--   GROUP BY customer_id
+-- ORDER BY SUM(amount) DESC
+-- LIMIT 1 );
+-- /* 배우 중에서 출연한 영화 수가 가장 많은 배우의 이름과 영화 수를 출력하시오 */
+-- SELECT concat(a.first_name, '', a.last_name) AS actor_name,
+-- COUNT(fa.film_id) AS film_count FROM actor a
+-- JOIN film_actor fa ON a.actor_id = fa.actor_id group by a.actor_id
+-- ORDER BY film_count DESC LIMIT 1;
+-- /* 가장 많이 대여된 영화 제목 Top10 과 그 대여 횟수를 출력하시오. */
+-- SELECT f.title, COUNT(r.rental_id) AS rental_count FROM rental r
+-- JOIN inventory i ON r.inventory_ID = i.inventory_id
+-- JOIN film f ON i.film_id = f.film_id GROUP BY f.film_id
+-- ORDER BY rental_count DESC LIMIT 10;
+-- /* 매장(store)별 총 수익(결제 금액 합계)을 출력하시오. */
+-- select s.store_id, SUM(p.amount) AS total_revenue FROM payment p
+-- JOIN staff st ON p.staff_id = st.staff_id
+-- JOIN store s ON st.store_id = s.store_id
+-- GROUP BY s.store_id;
+
+-- /* 장르(category)별 평균 영화 길이를 구하고, 가장 긴 평균 시간을 가진 장르를 출력하시오. */
+-- select c.name AS category_name, AVG(f.length) AS avg_length
+-- FROM film f
+-- JOIN film_category fc ON f.film_id = fc.film_id
+-- JOIN category c ON fc.category_id = c.category_id
+-- GROUP BY c.category_id
+-- ORDER BY avg_length DESC limit 1;
+-- /* 가장 많은 결제를 한 고객의 이름과 총 결제 금액을 구하시오. */
+-- SELECT CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
+-- SUM(p.amount) AS total_payment
+-- FROM payment p
+-- JOIN customer c ON p.customer_id = c.customer_id
+-- GROUP BY c.customer_id
+-- ORDER BY total_payment DESC
+-- LIMIT 1;
+-- /* film 테이블에서 replacement_cost가 가장 비싼 영화의 제목과 금액을 출력하시오. (MAX) */
+-- select title, replacement_cost FROM film
+-- WHERE replacement_cost = (SELECT MAX(replacement_cost) FROM film);
+-- /* 자신이 대여한 영화 수가 평균 이상인 고객의 이름을 출력하시오. */
+-- select concat(c.first_name, '', c.last_name) AS customer_name 
+-- FROM customer c
+-- JOIN rental r ON c.customer_id = r.customer_id
+-- group by c.customer_id
+-- having count(r.rental_id) >= (
+-- select avg(rental_count) FROM(
+-- select count(*) AS rental_count FROM rental
+-- GROUP BY customer_id 
+-- ) AS sub 
+-- );
+-- /* customer, address, city, country 테이블을 조인하여 고객 이름과 고객이 거주하는 국가명을 출력하시오. */
+-- SELECT CONCAT(c.first_name, '', c.last_name)AS customer_name,
+-- co.country AS country_name 
+-- FROM customer c
+-- JOIN address a ON c.address_id = a.address_id
+-- JOIN city ci ON a.city_id = ci.city_id
+-- JOIN country co ON ci.country_id = co.country_id;

@@ -1,0 +1,9 @@
+-- SELECT * FROM sakila.actor;
+-- /* 배우의 퍼스트 네임과 라스트 네임 조회 */
+-- SELECT first_name, last name FROM actor;
+-- /* actor 테이블에서 이름first_name의 앞 세 글자만 출력 */
+-- SELECT SUBSTRING(first_name, 1, 3) AS first_3_letters FROM actor;
+-- /* actor 테이블에서 성을 모두 소문자로 출력 */
+-- select LOWER(last_name) AS LOWER_NAME FROM actor;
+-- /* actor 테이블에서 이름과 성을 붙여서 전체 이름 full_name으로 출력 */
+-- SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM actor;
