@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영화 예매 사이트</title>
+</head>
+ <style>
+   body {
+      font-family: sans-serif;
+    }
+
+    h3 {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 30px;
+      font-size: 1.2em;
+    }
+
+    h3 span {
+      white-space: nowrap;
+    }
+
+    .movie-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .movie-box {
+      width: 200px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .movie-box:hover {
+      transform: scale(1.03);
+    }
+
+    .poster img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .movie-info {
+      padding: 10px;
+    }
+
+    .rating, .rating1 {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: white;
+    }
+
+    .rating {
+      background-color: #f1c40f;
+    }
+
+    .rating1 {
+      background-color: #26b46b;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .details {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .like {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .reserve {
+      background-color: #6b3fc8;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 9px;
+    }
+
+    .dolby {
+      background-color: #333;
+      color: white;
+      font-size: 10px;
+      padding: 4px 6px;
+      border-radius: 3px;
+    }
+
+    .booking-box {
+      display: none;
+      padding: 10px;
+      background: #f9f9f9;
+      margin-top: 10px;
+      border-top: 1px solid #ccc;
+    }
+
+  </style>
+<body>
+    <header>
+        <h3>
+            <span>
+            Vip Lounge &nbsp; &nbsp; &nbsp; 멤버쉽&nbsp; &nbsp; &nbsp; 고객센터
+        </span>
+        <span>
+         <a href="http://127.0.0.1:5500/3.%EB%A1%9C%EA%B7%B8%EC%9D%B8.html" style="text-decoration:none; color:inherit;">로그인</a>
+         &nbsp;&nbsp;&nbsp;회원가입&nbsp;&nbsp;&nbsp;빠른예매
+        </span></h3>
+       <h2>
+    영화 &nbsp;&nbsp;
+    예매 &nbsp;&nbsp;
+    극장 &nbsp;&nbsp;
+    이벤트 &nbsp;&nbsp;
+    <a href="http://127.0.0.1:5500/2.%EC%87%BC%ED%95%91%EB%AA%B0%EC%82%AC%EC%9D%B4%ED%8A%B8.html" style="text-decoration:none; color:inherit;">스토어</a> &nbsp;&nbsp;
+    혜택 &nbsp;&nbsp;
+    마이페이지
+    </h2>
+    </header>
+
+     <main>
+    <section class="movie-list">
+      <!-- 영화 1 -->
+      <div class="movie-box">
+        <div class="poster">
+          <img src="/images/영화포스터/아바타.webp" alt="아바타">
+        </div>
+        <div class="movie-info">
+          <div class="rating">12</div>
+          <div class="title">아바타</div>
+          <div class="details">예매율 77.7% | 개봉일 2009.07.02</div>
+          <div class="buttons">
+            <div class="like">🤍 8.3k</div>
+            <button class="reserve" onclick="showBooking('avatar')">예매</button>
+            <div class="dolby">🎬 Dolby Cinema</div>
+          </div>
+          <div class="booking-box" id="booking-avatar">
+            <label>상영관 선택:
+              <select>
+                <option>CGV 강남</option>
+                <option>CGV 용산</option>
+                <option>메가박스 코엑스</option>
+                <option>롯데시네마 월드타워</option>
+              </select>
+            </label><br>
+            <label>날짜 선택:
+              <input type="date">
+            </label><br>
+            <label>시간 선택:
+              <select>
+                <option>10:00</option>
+                <option>13:00</option>
+                <option>18:00</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!--영화2-->
+    <div class="movie-box">
+        <div class="poster">
+          <img src="/images/영화포스터/쥬라기공원3.webp" alt="쥬라기3">
+        </div>
+        <div class="movie-info">
+          <div class="rating">12</div>
+          <div class="title">쥬라기 월드 공원 3</div>
+          <div class="details">예매율 27.7% | 개봉일 2025.07.02</div>
+          <div class="buttons">
+            <div class="like">🤍 1.3k</div>
+            <button class="reserve" onclick="showBooking('jurassic')">예매</button>
+            <div class="dolby">🎬 Dolby Cinema</div>
+          </div>
+          <div class="booking-box" id="booking-jurassic">
+            <label>상영관 선택:
+              <select>
+                <option>CGV 강남</option>
+                <option>CGV 용산</option>
+                <option>메가박스 코엑스</option>
+                <option>롯데시네마 월드타워</option>
+              </select>
+            </label><br>
+            <label>날짜 선택:
+              <input type="date">
+            </label><br>
+            <label>시간 선택:
+              <select>
+                <option>10:00</option>
+                <option>13:00</option>
+                <option>18:00</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+<!--영화3-->
+      <div class="movie-box">
+        <div class="poster">
+          <img src="/images/영화포스터/드래곤길들이기2.jpg.crdownload" alt="드래곤길들이기2">
+        </div>
+        <div class="movie-info">
+          <div class="rating1">All</div>
+          <div class="title">드래곤 길들이기 2</div>
+          <div class="details">예매율 5.2% | 개봉일 2025.06.06</div>
+          <div class="buttons">
+            <div class="like">🤍 2.1k</div>
+            <button class="reserve" onclick="showBooking('dragon')">예매</button>
+            <div class="dolby">🎬 Dolby Cinema</div>
+          </div>
+          <div class="booking-box" id="booking-dragon">
+            <label>상영관 선택:
+              <select>
+                <option>CGV 강남</option>
+                <option>CGV 용산</option>
+                <option>메가박스 코엑스</option>
+                <option>롯데시네마 월드타워</option>
+              </select>
+            </label><br>
+            <label>날짜 선택:
+              <input type="date">
+            </label><br>
+            <label>시간 선택:
+              <select>
+                <option>10:00</option>
+                <option>13:00</option>
+                <option>18:00</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+<!--영화4-->
+     <div class="movie-box">
+        <div class="poster">
+          <img src="/images/영화포스터/괴물.webp" alt="괴물">
+        </div>
+        <div class="movie-info">
+          <div class="rating">12</div>
+          <div class="title">괴물</div>
+          <div class="details">예매율 10.2% | 개봉일 2023.11.29</div>
+          <div class="buttons">
+            <div class="like">🤍 3.3k</div>
+            <button class="reserve" onclick="showBooking('monster')">예매</button>
+            <div class="dolby">🎬 Dolby Cinema</div>
+          </div>
+          <div class="booking-box" id="booking-monster">
+            <label>상영관 선택:
+              <select>
+                <option>CGV 강남</option>
+                <option>CGV 용산</option>
+                <option>메가박스 코엑스</option>
+                <option>롯데시네마 월드타워</option>
+              </select>
+            </label><br>
+            <label>날짜 선택:
+              <input type="date">
+            </label><br>
+            <label>시간 선택:
+              <select>
+                <option>10:00</option>
+                <option>13:00</option>
+                <option>18:00</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+  </section>
+  </main>
+<!--스크립트-->
+ <script>
+    function showBooking(id) {
+      document.querySelectorAll('.booking-box').forEach(box => box.style.display = 'none');
+      const target = document.getElementById('booking-' + id);
+      if (target) target.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+시맨틱 태그
+<header>0
+<nav>0
+<h1> ~ <h6>
+<section>0
+<article>0
+<aside>0
+<footer>0
+<address>0
+
+ 텍스트 관련
+<p>o
+<blockquote> 0
+<q> 0
+<time> (  <time datetime=“”> )
+<b> <strong>0
+<i> <em>0
+<mark> 0
+<span> 0
+<s>0
+<code> 0
+<pre> 0
+&nbsp;0
+&lt;0
+&gt;0
+(html 특수문자)
+
+목록 태그
+<ul> <li>0
+<ol> <li>  // <ol type="a" start="2">  1 a A i I (타입 종류)0
+<dl> 0
+<dt> 0
+<dd> 0
+
+ 표 관련 태그
+<table> 0
+<tr> 0
+<th> 0
+<td> 0
+colspan  rowspan 0
+<captioin> 0

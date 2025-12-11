@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>탭 전환 로그인/회원가입</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .tab-container {
+      width: 300px;
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+    }
+    input[type="radio"] {
+      display: none;
+    }
+    label.tab {
+      display: inline-block;
+      width: 90%;
+      text-align: center;
+      background-color: #eee;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    input[type="radio"]:checked + label {
+      background-color: #ccc;
+    }
+    .form {
+      display: none;
+      margin-top: 20px;
+    }
+    #login-tab:checked ~ .form-login,
+    #signup-tab:checked ~ .form-signup {
+      display: block;
+    }
+    input {
+      width: 90%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input:invalid {
+      border: 2px solid red;
+    }
+    button {
+      width: 97%;
+      padding: 10px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    .way-back-home {
+        margin-top: 30px;
+        text-align: center;
+    }
+     .way-back-home a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+    <h5>스크립트 없이 정보 기억 불가능으로,,여기까지만</h5>
+  <div class="tab-container">
+    <input type="radio" id="login-tab" name="tab" checked>
+    <label class="tab" for="login-tab">로그인</label>
+    <input type="radio" id="signup-tab" name="tab">
+    <label class="tab" for="signup-tab">회원가입</label>
+
+    <form class="form form-login">
+      <input type="text" name="login-id" placeholder="아이디" required>
+      <input type="password" name="login-pw" placeholder="비밀번호" required>
+      <button type="submit">로그인</button>
+    </form>
+
+    <form class="form form-signup">
+      <input type="text" name="signup-id" placeholder="아이디" required>
+      <input type="password" name="signup-pw" placeholder="비밀번호" required>
+      <input type="text" name="signup-name" placeholder="이름" required>
+      <input type="email" name="signup-email" placeholder="이메일" required>
+      <button type="submit">회원가입</button>
+    </form>
+  </div>
+  
+  <div class="way-back-home"><a href="http://127.0.0.1:5500/1.%EC%98%81%ED%99%94%EA%B4%80.html" style="text-decoration:none; color:inherit;">돌아가기</a>
+</div>
+</body>
+</html>

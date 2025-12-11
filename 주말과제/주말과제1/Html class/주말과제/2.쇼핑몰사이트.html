@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    h1 {
+        color: aliceblue;
+    }
+    header {
+        background-color: black;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header img {
+        position: absolute;
+        left: 50px;
+        height: 20%;
+    }
+    nav {
+        display: flex;
+        gap: 50px;
+        font-size: 20px;
+    }
+
+    .banner {
+        height: 100%;
+        width: 100%;
+    }
+    .goods {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .goods-box {
+        width: 400px;
+        height: 400px;
+        box-shadow: 0px 0px 10px black;
+        font-size: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(250, 244, 255));
+    }
+    .goods-box:hover {
+      transform: scale(1.03);
+    }
+
+    .goods-box img {
+        display: block;
+        margin: auto;
+        height: 250px;
+        width: 250px;
+    }
+
+    .goods-box img:hover {
+      transform: scale(1.03);
+    }
+
+    .middle {
+        display: flex;
+        padding: 0 30px 0 30px
+    }
+
+    button {
+        color:darkblue;
+        font-size: 17px;
+        font-weight: bold;
+        width: 150px;
+        height: 40px;
+        border-radius: 5px;
+        border: none;
+        background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(251, 255, 40, 0.603));
+        box-shadow: 0 0 10px grey;
+        cursor: pointer;
+    }
+    
+    .button-group {
+        display: flex;
+        margin-top: 10px;
+        margin-left: 20px;
+        gap: 20px;
+    }
+
+    button:hover {
+        background-color: rgb(255, 145, 0);   
+        color: rgb(76, 0, 255);
+    }
+
+    .asside {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        
+    }
+
+    footer {
+        display: flex;
+        gap: 200px;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(78, 78, 78);
+        height: 200px;
+        margin-top: 30px;
+        color: azure;
+        padding: 50px;
+        line-height: 2.5;
+        
+    }
+
+    footer a:link{
+        color: whitesmoke;
+    }
+
+    footer a:visited {
+        color: yellow;
+    }
+
+</style>
+<body>
+    <header>
+        <h1>CGV 공식 Online store</h1>
+        <nav>
+            <a href="http://127.0.0.1:5500/1.%EC%98%81%ED%99%94%EA%B4%80.html">영화보기</a>
+            <a href="">영화관 오는 길</a>
+            <a href="">이벤트 안내</a>
+        </nav>
+    </header>
+<main>
+    <section class="banner-section">
+    <br><img class="banner" src="/images/영화관상품/팝콘 배너.jpg" alt="배너">
+</section>
+    <br><div class="middle">
+        <section class="goods">
+            <div class="goods-box">
+                <img src="/images/영화관상품/팝콘자동차.webp" alt="">
+                <p>한정! 비비 팝콘 자동차</p>
+                <p>8월3일까지 구매 가능</p>
+                <div class="button-group">
+                    <button>구매하기</button>
+                    <button>장바구니</button>
+                </div>
+            </div>
+
+            <div class="goods-box">
+                <img src="/images/영화관상품/팝콘통.jpg" alt="">
+                <p>한정! 팝콘 통</p>
+                <p>7월 17일까지 구매 가능</p>
+                <div class="button-group">
+                    <button>구매하기</button>
+                    <button>장바구니</button>
+                </div></div>
+
+            <div class="goods-box">
+                <img src="/images/영화관상품/놀이키트.jpg" alt="">
+                <p>한정! 놀이키트</p>
+                <p>7월 17일까지 구매 가능</p>
+                <div class="button-group">
+                    <button>구매하기</button>
+                    <button>장바구니</button>
+                
+            </div>
+            </div>
+            <div class="goods-box">
+                <img src="/images/영화관상품/캐릭터텀블러.jpg" alt="">
+                <p>한정! 캐릭터 텀블러</p>
+                <p>8월 31일까지 구매 가능</p>
+                <div class="button-group">
+                    <button>구매하기</button>
+                    <button>장바구니</button>
+                </div>
+            </div>
+        </section>
+    </aside>
+    </div>
+    <footer>
+    
+<ul>
+    <li><a href="/day.0626/01.htmlclass.html">이용약관</a></li>
+    <li><a href="/HTMLCSS/day_0626/02.시맨틱태그.html">개인정보 처리방침</a></li>
+    <li><a href="/day.0626/03.text.html">사업자 정보 확인</a></li>
+</ul>
+
+<ul>
+   <li><a href="/day.0626/01.htmlclass.html">자주 묻는 질문</a></li>
+    <li><a href="/HTMLCSS/day_0626/02.시맨틱태그.html">공지사항 링크</a></li>
+    <li><a href="/day.0626/03.text.html">사이트맵</a></li>
+</ul>
+
+    <ul>
+        <li><p>영화가 보고 싶을 땐 C G V</p></li>
+        <li><p>가장 잘 팔린 상품 : 어니언카라멜콤보팝콘</p></li>
+        <li><p>영화관 오는 길</p></li>
+        <li><p>영화를 볼 땐 에티켓을 지켜주세요 제발!</p></li>
+        <li>&copy;movie~</li>
+    </ul>
+</footer>
+</main></body>
+</html>
