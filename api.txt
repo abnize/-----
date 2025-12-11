@@ -1,0 +1,268 @@
+cd C:\yuu\chat_ui\server
+
+1. cd C:\yuu\aivsgame
+2. venv\Scripts\activate
+3. pip install openai flask
+4. python app.py
+5. 새 터미널 열기
+6. cd C:\yuu\aivsgame\client
+npm start
+
+
+---
+
+노션 어쩌구
+npx create-react-app blog > 시작하는 거
+npm start > 실행하는 거
+
+리엑트 루터사용(다음 파일 tsx로 넘어가는거)
+npm install react-router-dom
+
+배포용 띄우기. cd다음은 파일명이고 밑에거가 진또배기
+cd C:\recycling\frontend
+npm run dev
+
+일반과 대형의 모바일 업로드 통일시키기
+--- next
+npm install next react react-dom
+npm run dev > next 에서는 이 코드
+
+시작 오류 로그 뜨면 파워 셀 들어가서
+Get-Process | Where-Object {$_.Id -eq 20264} | Stop-Process -Force
+누르고
+npm run dev
+누른 뒤 터미널 들어가서 npm run dev 다시 누르면 끝
+
+그래도 안되면 파워셀에
+taskkill /F /IM node.exe
+입력하고 npm run dev 입력
+
+불안하면
+del .next\dev\lock 도 입력 후 엔터 치고 다시 npm run dev
+
+터미널에서 npm rub dev 입력 엔터치면 정상작동됨.
+
+한 번에 하기 ####
+taskkill /F /IM node.exe
+del .next\dev\lock
+npm run dev
+
+/* 사용한 css함수 종류
+기본 단위는 px이다.
+vw. vh는 전체 브라우저 크기를 기준으로 한 비율. 100vw,vh가 전체 화면을 뜻함. 1vw,vh는 전체 화면의 1퍼센트 크기.
+
+| 함수            | 정체           | 목적            | 인자                |
+| ------------- | ------------ | ------------- | ----------------- |
+| **goToMenu**  | Next.js 라우터용 | 페이지 이동        | 필요 없음             |
+| **goDetails** | 네가 만든 함수     | 버튼에 따른 데이터 처리 | `"장롱"` 같은 값 전달 가능 |
+
+
+
+width : 가로 길이
+height : 세로 길이
+background : 배경색 또는 배경 이미지 설정
+display:flex; : 요소 안의 자식들을 정렬하고 배치할 수 있는 Flexbox 레이아웃 활성화
+justify-content: center; : (가로 축 기준) 자식 요소를 가운데 정렬
+align-items: center; : (세로 축 기준) 자식 요소를 가운데 정렬
+flex-direction: column; : 자식 요소들을 세로 방향(위→아래)으로 배치
+position: relative; : 요소의 기본 위치를 유지하면서 top/left 등으로 살짝 이동 가능하게 함
+padding-top: 0px;          /* 위쪽 여백 */
+padding-bottom: 0px;       /* 아래쪽 여백 */
+margin-top: 250px;         /* 요소를 아래쪽으로 내리는 간격 */
+gap: 60px;                 /* 자식 요소들 사이의 간격 */
+border-radius: 0px;        /* 모서리 둥근 정도 (0이면 네모, 숫자 커질수록 둥글어짐) */
+border: 4px solid white;   /* 테두리 두께, 종류, 색상 */
+color: white;              /* 글자 색상 */
+font-size: 22px;           /* 글자 크기 */
+font-weight: 500;          /* 글자 두께(굵기) */
+text-align: center;        /* 텍스트 정렬 (가운데 정렬) */
+line-height: 1.4;          /* 줄과 줄 사이 간격(행간) */
+cursor: pointer;           /* 마우스 커서를 손가락 모양으로 변경 (클릭 가능한 요소 표시) */
+opacity: ;                 /* 요소의 투명도 설정 (1 = 불투명, 0 = 완전 투명) */
+flex: ;                    /* Flexbox에서 요소가 차지할 비율(늘어나기/줄어들기/기본 크기) 설정 */
+gap: ;                     /* 자식 요소들 사이에 넣는 간격 */
+transform: translateY(-30px);  /* 요소를 Y축(위/아래)으로 30px 이동 */
+z-index: ;                 /* 요소의 쌓이는 순서(값이 클수록 위에 표시됨) */
+top : ;                    /* position 사용 시 위쪽 기준으로 요소 이동 */
+left: ;                    /* position 사용 시 왼쪽 기준으로 요소 이동 */
+
+
+
+
+*/
+
+
+인트로 -
+/* ===== 인트로 화면 스타일 ===== */
+
+.start-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-bottom: 120px;
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.start-text {
+  font-size: 24px;
+  line-height: 1.5;
+  margin-bottom: 60px;
+  opacity: 0.9;
+}
+
+.start-sub {
+  font-size: 18px;
+  line-height: 1.4;
+  opacity: 0.6;
+}
+
+---기본
+function App() {
+  return (
+    <div>
+    </div>
+  );
+}
+
+export default App;
+
+---
+
+"use client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import KeyboardModal from "@/app/components/KeyboardModal";
+
+export default function FirstScreen() {
+  const router = useRouter();
+
+  // 상태값
+  const [textQuestion, setTextQuestion] = useState("");
+  const [showKeyboard, setShowKeyboard] = useState(false);
+
+  return (
+    <div className="page-bg">
+      <div className="kiosk">
+
+        {/* 뒤로가기 */}
+        <img
+          src="/back_icon.png"
+          alt="뒤로가기"
+          className="back-btn"
+          onClick={() => router.back()}
+        />
+
+        <div className="general_waste">
+
+          {/* ✅ 카메라 제거 대신 레이아웃 유지용 공간 */}
+          <div className="camera-spacer"></div>
+
+          {/* ✅ 채팅 영역 */}
+          <div className="chat-area">
+            {textQuestion ? (
+              <div className="chat-bubble user">{textQuestion}</div>
+            ) : (
+              <div className="chat-placeholder">
+                여기에 질문 내용이 표시됩니다.
+              </div>
+            )}
+          </div>
+
+          {/* ✅ 하단 입력 영역 */}
+          <div className="bottom-button-area">
+
+            <input
+              type="text"
+              placeholder="에러로 인해 키보드가 안 뜹니다"
+              value={textQuestion}
+              readOnly
+              onClick={() => setShowKeyboard(true)}
+              className="text-input"
+            />
+
+            <button
+              className="ask-btn"
+              onClick={() =>
+                router.push(
+                  "/general_waste/analyze?text=" +
+                    encodeURIComponent(textQuestion)
+                )
+              }
+              disabled={!textQuestion}
+            >
+              질문하기
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      {/* ✅ 키보드는 항상 최상단 overlay로 */}
+      {showKeyboard && (
+        <KeyboardModal
+          value={textQuestion}
+          onChange={setTextQuestion}
+          onClose={() => setShowKeyboard(false)}
+        />
+      )}
+      
+    </div>
+  );
+}
+
+{/* 🔙 뒤로가기 버튼 */}
+        <img
+          src="/back_icon.png"
+          onClick={() => router.push("/")}
+          style={{
+            position: "absolute",
+            top: "60px",
+            left: "40px",
+            width: "90px",
+            height: "90px",
+            cursor: "pointer",
+            // filter: "invert(100%)", // 아이콘이 흰색 없던 문제 해결용
+          }}
+        />
+
+
+
+          {/* 📌 촬영 버튼 + 파일 업로드 버튼 */}
+          <div className="bottom-button-area">
+
+            {/* 🔥 촬영 버튼 추가 */}
+            <button
+              className="first-btn"
+              disabled={!isCameraReady}
+              onClick={takePhoto}
+            >
+              사진 촬영하기
+            </button>
+
+            {/* 기존 파일 업로드 버튼 */}
+            <button
+              className="first-btn"
+              onClick={() => router.push("/large/qr")}
+            >
+              사진 첨부 파일 추가
+            </button>
+
+          </div>
+
+        </div>
+    </div>
+  );
+}
+
+
+
+
